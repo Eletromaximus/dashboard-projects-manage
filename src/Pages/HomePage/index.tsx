@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { LinkButton } from './Styles'
 import * as S from './Styles'
 
 export function HomePage () {
@@ -16,11 +15,11 @@ export function HomePage () {
       <S.MainStyle>
         <h1>Meus Projetos</h1>
 
-        <LinkButton>
+        <S.LinkButton>
           <Link to='create'>
             <h4>Criar Projeto</h4>
           </Link>
-        </LinkButton>
+        </S.LinkButton>
       </S.MainStyle>
     </S.MenuStyle>
 

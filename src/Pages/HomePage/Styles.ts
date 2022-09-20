@@ -41,7 +41,7 @@ export const LinkButton = styled('div')`
   background-color: #23aaf2;
   
   a {
-    text-decoration: none;
     color: white;
+    text-decoration: none;
   }
 `
