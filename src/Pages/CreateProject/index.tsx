@@ -1,12 +1,38 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { FormProject } from './FormProject'
 import * as S from './Styles'
 
 interface ICategory {
   id: number,
   name: string
 }
+
 export function CreateProject () {
   const [categories, setCategories] = useState<ICategory[] | []>([])
+  const [values, setValues] = useState({
+    price: '0',
+    name: '',
+    category: {
+      id: '0',
+      name: ''
+    }
+  })
+
+  function handleSubmit (event: ChangeEvent<HTMLInputElement>) {
+    event.preventDefault()
+    setValues({ ...values, [event.target.name]: event.target.value })
+  }
+
+  function selectHandle (e: ChangeEvent<HTMLSelectElement>) {
+    e.preventDefault()
+    setValues({
+      ...values,
+      category: {
+        id: e.target.value,
+        name: e.target.options[e.target.selectedIndex].text
+      }
+    })
+  }
 
   const callApi = async () => await fetch('http://localhost:5000/categories', {
     method: 'GET',
@@ -21,6 +47,10 @@ export function CreateProject () {
   useEffect(() => {
     callApi()
   }, [])
+
+  useEffect(() => {
+    console.log(values)
+  }, [values])
 
   return (
     <S.MenuStyle>
@@ -54,49 +84,12 @@ export function CreateProject () {
           </div>
 
           <div className='face' id='front'>
-            <form action=''>
-              <label htmlFor='nomedoprojeto'>
-                <b>Nome do Projeto</b>
-              </label>
-
-              <input
-                type='text'
-                name='name'
-                placeholder='Insira o nome do projeto'
-              />
-
-              <label htmlFor='category'>
-                <b>Selecione uma Categoria</b>
-              </label>
-
-              <input
-                type='text'
-                name='name'
-                placeholder='Selecione uma opção'
-                />
-
-              <label htmlFor='preco'>
-                <b>Preço</b>
-              </label>
-
-              <select
-                name='categories'
-                placeholder='Selecione a categoria'
-              >
-                <option>{'Selecione uma opção'}</option>
-                {categories.length > 0 && categories.map((category) => (
-                  <option value={category.id} key={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-
-              </select>
-
-              <S.LinkButton
-                type='submit'
-                value='Criar Projeto'
-              />
-            </form>
+            <FormProject
+              categories={categories}
+              handleSubmit={handleSubmit}
+              selectHandle={selectHandle}
+              values={values}
+            />
           </div>
         </S.CartStyle>
       </S.MainStyle>
