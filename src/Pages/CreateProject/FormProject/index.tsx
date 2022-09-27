@@ -1,5 +1,6 @@
 import { LinkButton } from './Styles'
 import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface IForm {
   categories: {
@@ -24,9 +25,22 @@ export function FormProject ({
   selectHandle,
   values
 }: IForm) {
-  function submit (e: any) {
+  const navigate = useNavigate()
+
+  async function submit (e: any) {
     e.preventDefault()
     console.log(values)
+
+    await fetch('http://localhost:5000/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+      .then((resp) => resp.json())
+      .then((data) => navigate('/projects'))
+      .catch((err) => console.log(err))
   }
 
   return (

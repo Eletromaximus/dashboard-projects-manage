@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react'
+import { WrapperPages } from '../../components/WrapperPages'
 import { FormProject } from './FormProject'
 import * as S from './Styles'
 
@@ -53,15 +54,8 @@ export function CreateProject () {
   }, [values])
 
   return (
-    <S.MenuStyle>
-      <S.HeaderStyle>
-        <h1 style={{
-          color: 'whitesmoke'
-        }}>
-          Gerenciador de projetos
-        </h1>
-      </S.HeaderStyle>
 
+    <WrapperPages>
       <S.MainStyle>
         <h1>Crie um projeto</h1>
 
@@ -93,7 +87,6 @@ export function CreateProject () {
           </div>
         </S.CartStyle>
       </S.MainStyle>
-    </S.MenuStyle>
-
+    </WrapperPages>
   )
 }
