@@ -39,7 +39,11 @@ export function FormProject ({
       body: JSON.stringify(values)
     })
       .then((resp) => resp.json())
-      .then((data) => navigate('/projects'))
+      .then(() => navigate('/projects', {
+        state: {
+          message: 'Projeto criado com sucesso!'
+        }
+      }))
       .catch((err) => console.log(err))
   }
 

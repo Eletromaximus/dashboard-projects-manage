@@ -8,6 +8,33 @@
         "name": "Infra"
       },
       "id": 1
+    },
+    {
+      "price": "458",
+      "name": "teste-de-produtividade",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "id": 2
+    },
+    {
+      "price": "458",
+      "name": "Max Milliano de Souza Machado",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "id": 3
+    },
+    {
+      "price": "4500",
+      "name": "Projeto 22",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "id": 4
     }
   ],
   "categories": [
